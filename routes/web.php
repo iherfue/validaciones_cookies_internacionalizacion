@@ -36,11 +36,11 @@ Route::get('/fecha',function(){
   return view('fecha', array('dsemana' => $diasemana, 'dia' => $dia, 'mes' => $mes, 'anio' => $anio));
 });
 
-Route::get('/auth/login',function(){
+/*Route::get('/auth/login',function(){
 
   return view('auth/login');
 
-});
+});*/
 
 
 /*
@@ -93,3 +93,7 @@ Route::get('catalog/{name}/{id}', function($id,$name){
 })->where(array('name' => '[A-Za-z]+' , 'id' => '[0-9]+'));
 
 */
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
