@@ -7,6 +7,10 @@ use App\Cliente;
 class CatalogController extends Controller
 {
 
+  public function __construct(){
+
+    $this->middleware('auth');
+  }
     public function getIndex(){
 
       $clientes = Cliente::all();
