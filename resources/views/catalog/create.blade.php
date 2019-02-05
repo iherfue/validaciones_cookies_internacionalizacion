@@ -10,7 +10,7 @@
      </div>
      <div class="card-body" style="padding:30px">
 
-        <form method="POST">
+        <form method="POST" action="{{url('catalog/create')}}" enctype="multipart/form-data">
           @csrf
         <div class="form-group">
            <label for="title">Nombre</label>
@@ -19,7 +19,7 @@
 
         <div class="form-group">
           <label for="url">Url de la imágen</label>
-           <input type="url" name="url" class="form-control">
+           <input type="file" name="file" class="form-control">
         </div>
 
         <div class="form-group">

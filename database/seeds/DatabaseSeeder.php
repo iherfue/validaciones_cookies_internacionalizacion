@@ -48,7 +48,7 @@ private $arrayUsers = array(
         // $this->call(UsersTableSeeder::class);
     }
 
-    private function seedCatalog(){
+    private function seedCatalog(){ //campos base de datos
 //      DB::table('clientes')->delete();
 //      $c->nombre(columna en BD)
       foreach( $this->arrayClientes as $cliente ) {

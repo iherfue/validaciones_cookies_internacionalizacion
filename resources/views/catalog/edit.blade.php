@@ -3,7 +3,9 @@
 @section('content')
 <?php
   $originalDate = $cliente ->fecha_nacimiento;
+
   $newDate = date("d/m/Y", strtotime($originalDate));
+echo($newDate);
 ?>
 <div class="row" style="margin-top:40px">
 <div class="offset-md-3 col-md-6">
@@ -13,7 +15,7 @@
      </div>
      <div class="card-body" style="padding:30px">
 
-        <form method="POST">
+        <form method="POST"  enctype="multipart/form-data">
           {{ method_field('PUT')}}
           @csrf
         <div class="form-group">
@@ -23,12 +25,13 @@
 
         <div class="form-group">
           <label for="url">Url de la imágen</label>
-           <input type="url" name="url" class="form-control" value="{{$cliente->imagen}}">
+           <img src="../../../img/{{$cliente->imagen}}" width="100">
+           <input type="file" name="file" class="form-control">
         </div>
 
         <div class="form-group">
           <label for="url">Fecha Nacimiento</label>
-          <input type="text" name="fecha_nacimiento" class="form-control" value="<?php echo $newDate?>">
+          <input type="date" name="fecha_nacimiento" class="form-control" value="<?php echo $originalDate?>">
         </div>
 
         <div class="form-group">
