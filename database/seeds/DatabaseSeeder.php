@@ -46,6 +46,12 @@ private $arrayUsers = array(
         self::seedUsers();
         $this->command->info('Tabla users inicializada con datos!');
         // $this->call(UsersTableSeeder::class);
+
+        // La creación de datos de roles debe ejecutarse primero
+        $this->call(RoleTableSeeder::class);
+        // Los usuarios necesitarán los roles previamente generados
+        $this->call(UserTableSeeder::class); 
+
     }
 
     private function seedCatalog(){ //campos base de datos

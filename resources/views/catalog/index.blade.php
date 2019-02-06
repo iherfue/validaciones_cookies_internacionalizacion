@@ -2,6 +2,15 @@
 
 @section('content')
 
+@if(Auth::user()->hasRole('admin'))
+    <div>Acceso como administrador</div>
+    
+@else
+    <div>Hola {{Auth::user()->name}} Rol: Usuario</div>
+
+@endif
+You are logged in!
+
 <div class="row">
 
 @foreach( $clientes as $cliente )

@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*Route::put('post/{id}', function ($id) {
+    //
+})->middleware('auth', 'role:admin');*/
 //Route::get('/', function(){
 
 //  return view('home');
@@ -32,7 +34,7 @@ Route::post('/catalog/create', 'CatalogController@postCreate');
 Route::get('/catalog/edit/{id}', 'CatalogController@getEdit');
 Route::put('/catalog/edit/{id}', 'CatalogController@putEdit');
 
-Route::delete('/catalog/edit/{id}', 'CatalogController@putDelete');
+Route::delete('/catalog/edit/{id}', 'CatalogController@putDelete')->middleware('auth', 'role:admin');
 
 Route::get('/fecha',function(){
   $date = getdate();
