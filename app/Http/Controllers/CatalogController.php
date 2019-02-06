@@ -90,18 +90,18 @@ class CatalogController extends Controller
 
       $cliente = Cliente::All();
 
-      $hoy = date("Y-m-d");
-      echo $hoy;
+      $hoy = date("m-d");
+      //echo $hoy;
       foreach ($cliente as $c) {
 
-        if($hoy == $c->fecha_nacimiento){
+        $fecha = substr($c->fecha_nacimiento,5);
 
+        if($hoy == $fecha){
+        //  echo('si cumple');
           $mail = new MailController();
           $data = $c;
           $mail->attachment_email($data);
         }
       }
-  //    $mail = new MailController();
-      //$mail->attachment_email();
     }
 }
