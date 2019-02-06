@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+
 use App\Http\Controllers\Controller;
+use App\Mail\ConfirmationAccount;
+use App\User;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use Mail;
 use App\Role;
 
 class RegisterController extends Controller
@@ -77,4 +82,22 @@ class RegisterController extends Controller
 
         return $user;
     }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+        Mail::to($user->email)->send(new ConfirmationAccount($user));
+
+        return back()->with('status','Please confirm your email address');
+    }
+
+    public function confirmEmail($token){
+
+      User::whereToken($token)->firstOrFail()->hashVerified();
+      
+      return redirect('login')->with('status','Has confirmado el correo,inicia sesión para comenzar');
+    }
+
 }

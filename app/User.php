@@ -69,4 +69,22 @@ class User extends Authenticatable
     }
     return false;
   }
+
+  public static function boot(){
+
+    parent::boot();
+
+    static::creating(function ($user){
+      $user->token = str_random(40);
+    });
+  }
+
+  public function hashVerified(){
+
+    $this->email_verified_at = date("y-m-d");
+    $this->verified = true;
+    $this->token = null;
+
+    $this->save();
+  }
 }
