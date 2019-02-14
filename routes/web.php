@@ -20,6 +20,13 @@
 //Route::get('sendbasicemail','MailController@basic_email');
 //Route::get('sendhtmlemail','MailController@html_email');
 
+
+//dd(\Request::cookie());
+
+Route::get('/language','IdiomaController@idioma');
+
+Route::post('language','IdiomaController@guardaIdioma');
+
 Route::get('sendattachmentemail','MailController@attachment_email');
 Route::get('/correo','CatalogController@enviaCorreo');
 
@@ -27,9 +34,13 @@ Route::get('/', 'HomeController@getHome');
 
 Route::get('/catalog', 'CatalogController@getIndex');
 
+//Administrador
+Route::get('/dashboard', 'DashboardController@getIndex')->middleware('auth', 'role:admin');;
+
 Route::get('/catalog/show/{id}', 'CatalogController@getShow');
 
 Route::get('/catalog/create', 'CatalogController@getCreate');
+
 Route::post('/catalog/create', 'CatalogController@postCreate');
 
 Route::get('/catalog/edit/{id}', 'CatalogController@getEdit');
@@ -107,4 +118,4 @@ Route::get('catalog/{name}/{id}', function($id,$name){
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

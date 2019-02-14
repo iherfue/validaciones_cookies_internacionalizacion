@@ -90,13 +90,13 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
         Mail::to($user->email)->send(new ConfirmationAccount($user));
 
-        return back()->with('status','Please confirm your email address');
+        return back()->with('status','Por favor confirme su dirección de correo');
     }
 
     public function confirmEmail($token){
 
       User::whereToken($token)->firstOrFail()->hashVerified();
-      
+
       return redirect('login')->with('status','Has confirmado el correo,inicia sesión para comenzar');
     }
 

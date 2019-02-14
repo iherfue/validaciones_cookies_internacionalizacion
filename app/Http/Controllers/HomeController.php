@@ -25,11 +25,22 @@ class HomeController extends Controller
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
+     * Existen Redirecciones segun el rol de usuario
      */
     public function getHome(Request $request)
     {
       $request->user()->authorizeRoles(['user', 'admin']);
-        return redirect()->action('CatalogController@getIndex');
+
+      if($request->user()->email == 'atrapa108@gmail.com'){
+
+         return redirect()->action('DashboardController@getIndex');
+
+      }else{
+
+         return redirect()->action('CatalogController@getIndex');
+
+      }
+      //  return redirect()->action('CatalogController@getIndex');
         //return view('home');
     }
 }

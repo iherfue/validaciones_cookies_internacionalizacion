@@ -4,7 +4,7 @@
 
 @if(Auth::user()->hasRole('admin'))
     <div>Acceso como administrador</div>
-    
+
 @else
     <div>Hola {{Auth::user()->name}} Rol: Usuario</div>
 

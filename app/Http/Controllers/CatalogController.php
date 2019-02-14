@@ -13,6 +13,9 @@ class CatalogController extends Controller
   public function __construct(){
 
     $this->middleware('auth');
+
+      \Request::cookie('idioma', 'es', 60 * 24 * 365);
+
   }
     public function getIndex(){
 
@@ -40,6 +43,14 @@ class CatalogController extends Controller
     }
 
     public function postCreate(Request $request){
+
+      request()->validate([
+
+        'title' => 'required|min:5',
+        'email' => 'required|email',
+        'file' => 'required'
+      ]);
+
       $c = new Cliente;
       $c->nombre = $request->input('title');
 

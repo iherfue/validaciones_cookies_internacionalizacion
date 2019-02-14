@@ -19,6 +19,7 @@
                         <a class="nav-link" href="{{url('/catalog/create')}}">
                             <span>&#10010</span> Nuevo cliente
                         </a>
+                      
                     </li>
                 </ul>
 
